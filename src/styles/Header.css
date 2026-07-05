@@ -1,0 +1,63 @@
+.header {
+  height: 10vh;
+  width: 100vw;
+  background-color: #ffffff;
+  display: flex;
+}
+
+.header_img {
+  height: 100%;
+  width: 33%;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.header_nav {
+  height: 100%;
+  width: 34%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header_user {
+  height: 100%;
+  width: 33%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+.text {
+  margin-left: 10px;
+  color: black;
+}
+.nav {
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: 100;
+}
+.settings_popup {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  width: 150px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.settings_popup p {
+  margin: 0;
+  cursor: pointer;
+}
+
+.settings_popup p:hover {
+  color: #2563eb;
+}
