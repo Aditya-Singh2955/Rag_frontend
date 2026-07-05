@@ -1,8 +1,10 @@
 .header {
   height: 10vh;
-  width: 100vw;
+  width: 100%;
+  box-sizing: border-box;
   background-color: #ffffff;
   display: flex;
+  padding: 0 15px;
 }
 
 .header_img {
@@ -60,4 +62,26 @@
 
 .settings_popup p:hover {
   color: #2563eb;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0 10px;
+  }
+  .header_img h1 .text {
+    font-size: 18px;
+    margin-left: 5px;
+  }
+  .nav {
+    font-size: 16px;
+  }
+  .header_user {
+    gap: 6px;
+  }
+  .settings_popup {
+    top: 50px;
+    right: 10px;
+    width: 130px;
+    font-size: 12px;
+  }
 }

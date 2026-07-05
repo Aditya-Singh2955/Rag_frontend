@@ -12,6 +12,18 @@ const Conversation = () => {
   const fileRef = useRef();
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadingFileName, setUploadingFileName] = useState("");
+  const [isBotTyping, setIsBotTyping] = useState(false);
+  const chatEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, isUploading, isBotTyping]);
 
   const handleSend = async () => {
   if (!input.trim()) return;
@@ -27,6 +39,7 @@ const Conversation = () => {
   ]);
 
   setInput("");
+  setIsBotTyping(true);
 
   try {
     const { data } = await axios.post(
@@ -53,6 +66,8 @@ const Conversation = () => {
         sender: "bot",
       },
     ]);
+  } finally {
+    setIsBotTyping(false);
   }
 };
 
@@ -87,6 +102,8 @@ const Conversation = () => {
 
   const formData = new FormData();
   formData.append("file", file);
+  setUploadingFileName(file.name);
+  setIsUploading(true);
 
   try {
     const { data } = await axios.post(
@@ -114,10 +131,13 @@ const Conversation = () => {
     setMessages((prev) => [
       ...prev,
       {
-        text: "File upload failed.",
+        text: `❌ File upload failed for ${file.name}.`,
         sender: "bot",
       },
     ]);
+  } finally {
+    setIsUploading(false);
+    setUploadingFileName("");
   }
 
   e.target.value = "";
@@ -141,6 +161,32 @@ const Conversation = () => {
             {msg.text}
           </div>
         ))}
+
+        {/* UPLOADING STATE INDICATOR */}
+        {isUploading && (
+          <div className="message user uploading_bubble">
+            <div className="upload_content">
+              <span className="upload_icon_pulse">📎</span>
+              <span>Uploading {uploadingFileName}...</span>
+            </div>
+            <div className="progress_bar_container">
+              <div className="progress_bar_fill"></div>
+            </div>
+          </div>
+        )}
+
+        {/* BOT TYPING STATE (WHATSAPP THREE DOTS BUBBLING) */}
+        {isBotTyping && (
+          <div className="message bot typing_bubble">
+            <div className="typing_indicator">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        )}
+
+        <div ref={chatEndRef} />
       </div>
 
       {/* INPUT */}
