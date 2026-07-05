@@ -10,7 +10,7 @@ const Header = () => {
     <div className="header">
       <div className="header_img">
         <h1>
-          <p className="text">auraAi</p>
+          <p className="text">Aditya AI</p>
         </h1>
       </div>
       <div className="header_nav">

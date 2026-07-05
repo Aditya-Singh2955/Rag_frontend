@@ -1,4 +1,4 @@
-import React, { useState, useEffect , useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/Conversation.css";
 import SendIcon from "@mui/icons-material/Send";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
@@ -9,10 +9,9 @@ import SpeechRecognition, {
 import axios from 'axios';
 
 const Conversation = () => {
-    const fileRef = React.useRef();
+  const fileRef = useRef();
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
-  const [modal, setModal] = useState(false);
 
   const handleSend = async () => {
   if (!input.trim()) return;
@@ -128,8 +127,8 @@ const Conversation = () => {
     <div className="container">
       {/* TITLE */}
       <div className="header_text">
-        <h1>Upload Document Aura Ai will Provide Precision Solutions</h1>
-        <p>How can Aura assist your workflow today?</p>
+        <h1>Upload Document Aditya AI will Provide Precision Solutions</h1>
+        <p>How can Aditya assist your workflow today?</p>
       </div>
 
       {/* CHAT AREA */}
@@ -149,7 +148,7 @@ const Conversation = () => {
         <AttachFileIcon className="icon" onClick={() => fileRef.current.click()} />
         <input
           type="text"
-          placeholder="Ask Aura anything..."
+          placeholder="Ask Aditya anything..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => {
@@ -178,7 +177,7 @@ const Conversation = () => {
       </div>
 
       <p className="footer_note">
-        Aura AI may provide inaccurate info. Verify important details.
+        Aditya AI may provide inaccurate info. Verify important details.
       </p>
     </div>
   );
